@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Create and Manage Sites</h2>
+
+  <h3>Create a New Site</h3>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.errors }}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Create Site</button>
+  </form>
+{% endblock %}

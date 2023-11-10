@@ -1,0 +1,30 @@
+{% extends 'profile/profile.html' %}
+
+{% block content2 %}
+<div class="container">
+    <h2>Statistics</h2>
+    <a href="{% url 'sites' %}" class="btn btn-primary">Create new website</a>
+</div>
+
+<h3>Current Sites</h3>
+<ul>
+    {% for site in sites %}
+        <li>
+            <a href="{% url 'proxy' site.site_name '/' %}" target="_blank">{{ site.site_name }}</a>
+            {% with statistics=site.vpnuserstatistics_set.first %}
+                {% if statistics %}
+                    <ul>
+                        <li>Pages Count: {{ statistics.pages_count }}</li>
+                        <li>Data Sent: {{ statistics.size_data_sent }} bytes</li>
+                        <li>Data Downloaded: {{ statistics.size_data_downloaded }} bytes</li>
+                    </ul>
+                {% else %}
+                    <p>No statistics available for this site.</p>
+                {% endif %}
+            {% endwith %}
+        </li>
+    {% empty %}
+        <li>No sites available.</li>
+    {% endfor %}
+</ul>
+{% endblock content2 %}

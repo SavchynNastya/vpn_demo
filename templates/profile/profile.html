@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<ul class="nav nav-tabs" id="myTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+        <a class="nav-link {% if request.path == '/profile/' %}active{% endif %}" id="edit-tab" data-toggle="tab" href="{% url 'profile' %}" role="tab" aria-controls="edit" aria-selected="true">Edit Profile</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link {% if request.path == '/statistics/' %}active{% endif %}" id="stats-tab" data-toggle="tab" href="{% url 'statistics' %}" role="tab" aria-controls="stats" aria-selected="false">Statistics</a>
+    </li>
+</ul>
+<div class="tab-content" id="myTabsContent">
+    <div class="tab-pane fade {% if request.path == '/profile/' %}show active{% endif %}" id="edit" role="tabpanel" aria-labelledby="edit-tab">
+        {% block content1 %}{% endblock content1 %}
+    </div>
+    <div class="tab-pane fade {% if request.path == '/statistics/' %}show active{% endif %}" id="stats" role="tabpanel" aria-labelledby="stats-tab">
+        {% block content2 %}{% endblock content2 %}
+    </div>
+</div>
+{% endblock %}

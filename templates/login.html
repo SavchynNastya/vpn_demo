@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="col-md-4">
+    <h2 class="text-center">Login</h2>
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-group d-flex flex-column">
+        {{ form.username.label_tag }}
+        {{ form.errors }}
+        {{ form.username }}
+      </div>
+      <div class="form-group d-flex flex-column">
+        {{ form.password.label_tag }}
+        {{ form.errors }}
+        {{ form.password }}
+      </div>
+      <button type="submit" class="btn btn-primary" style="width: 150px;">Login</button>
+    </form>
+    <p>Don't have an account yet? <a href="{% url 'register' %}">Register</a></p>
+  </div>
+</div>
+{% endblock %}
