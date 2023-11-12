@@ -22,9 +22,6 @@ until postgres_ready; do
 done
 echo "Postgres is up - continuing..."
 
-echo "Install dep..."
-pip install -r conf/requirements.txt
-
 echo "Running collectstatic..."
 python manage.py collectstatic --noinput
 
